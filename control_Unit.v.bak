@@ -1,0 +1,11 @@
+module control_Unit(clk, reset, in,status, ALUop,PCsrc, ALUsrc,Imm_select, WB, REG_rw,MEM_rw,carry)
+//Control Unit set up for all type of instructions
+input clk,reset;
+input [31:0]in;
+output PCsrc,ALUsrc,WB,REG_rw,MEM_rw,Imm_select;
+output [3:0]ALUop;
+
+
+
+
+
