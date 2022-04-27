@@ -1,0 +1,32 @@
+module control_Unit_tb();
+reg [31:0]in;
+reg clk, reset;
+reg [3:0] status;
+wire PCsrc,ALUsrc,WB,REG_rw,MEM_rw;
+wire [1:0]Imm_select;
+wire [3:0]ALUop;
+
+control_Unit dut(.clk(clk),.reset(reset),.in(in),.status(status),.ALUop(ALUop),.pcsrc(pcsrc),.Alusrc(Alusrc),.Imm_select(Imm_select),.WB(WB),.REG_rw(REG_rw),.MEM_rw(MEM_rw),.carry(carry));
+
+clk=0;
+
+#10; 
+initial begin 
+
+in =32'b0000000000000000000000000000000   ;// first instruction break down
+
+#10;
+
+in=32'b0000000000000000000000000000000    ;//second instruction 
+
+#10; 
+
+in=32'b0000000000000000000000000000000    ;//third instruction break down
+
+#10;
+
+in=32'b0000000000000000000000000000000    ;//fourth instructoin
+
+#10;
+end 
+endmodule 
