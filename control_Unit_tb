@@ -2,7 +2,7 @@ module control_Unit_tb();
 reg [31:0]in;
 reg clk, reset;
 reg [3:0] status;
-wire PCsrc,ALUsrc,WB,REG_rw,MEM_rw;
+wire pcsrc,ALUsrc,WB,REG_rw,MEM_rw;
 wire [1:0]Imm_select;
 wire [3:0]ALUop;
 
