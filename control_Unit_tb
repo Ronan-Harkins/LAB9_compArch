@@ -8,25 +8,37 @@ wire [3:0]ALUop;
 
 control_Unit dut(.clk(clk),.reset(reset),.in(in),.status(status),.ALUop(ALUop),.pcsrc(pcsrc),.Alusrc(Alusrc),.Imm_select(Imm_select),.WB(WB),.REG_rw(REG_rw),.MEM_rw(MEM_rw),.carry(carry));
 
-clk=0;
 
-#10; 
 initial begin 
+clk=0;
+#10;
+clk=1;
 
 in =32'b0000000000000000000000000000000   ;// first instruction break down
 
 #10;
+clk=0;
+#10;
+clk=1;
 
 in=32'b0000000000000000000000000000000    ;//second instruction 
 
-#10; 
-
+#10;
+clk=0;
+#10;
+clk=1;
 in=32'b0000000000000000000000000000000    ;//third instruction break down
 
 #10;
+clk=0;
+#10;
+clk=1;
 
 in=32'b0000000000000000000000000000000    ;//fourth instructoin
 
 #10;
+clk=0;
+#10;
+clk=1;
 end 
 endmodule 
