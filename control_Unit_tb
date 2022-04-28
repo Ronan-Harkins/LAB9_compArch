@@ -1,44 +1,41 @@
-module control_Unit_tb();
+module control_unit_tb();
+
 reg [31:0]in;
 reg clk, reset;
 reg [3:0] status;
-wire pcsrc,ALUsrc,WB,REG_rw,MEM_rw;
+wire pcsrc,Alusrc,WB,REG_rw,MEM_rw;
 wire [1:0]Imm_select;
 wire [3:0]ALUop;
 
+//module control_Unit(clk, reset, in,status, ALUop,pcsrc, Alusrc,Imm_select, WB, REG_rw,MEM_rw,carry);
 control_Unit dut(.clk(clk),.reset(reset),.in(in),.status(status),.ALUop(ALUop),.pcsrc(pcsrc),.Alusrc(Alusrc),.Imm_select(Imm_select),.WB(WB),.REG_rw(REG_rw),.MEM_rw(MEM_rw),.carry(carry));
 
-
 initial begin 
-clk=0;
-#10;
-clk=1;
+clk= 0;
 
-in =32'b0000000000000000000000000000000   ;// first instruction break down
+forever 
+#10 clk = ~clk;
+end
+initial begin 
+reset<=1;
 
-#10;
-clk=0;
-#10;
-clk=1;
+#20;
+reset <=0;
+#20;
 
-in=32'b0000000000000000000000000000000    ;//second instruction 
+in = 32'b00000001111010000000000111100011   ;//branch test
+#20;
 
-#10;
-clk=0;
-#10;
-clk=1;
-in=32'b0000000000000000000000000000000    ;//third instruction break down
 
-#10;
-clk=0;
-#10;
-clk=1;
+in = 32'b00000001111010000000000110010011   ;// first instruction break down
+#20;
 
-in=32'b0000000000000000000000000000000    ;//fourth instructoin
 
-#10;
-clk=0;
-#10;
-clk=1;
+
+
+in = 32'b00000001111010000000000110110011   ;//r-type
+#20;
+
+
 end 
-endmodule 
+endmodule
