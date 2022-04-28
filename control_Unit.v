@@ -6,8 +6,9 @@ input [3:0]status;
 output reg pcsrc,Alusrc,WB,REG_rw,MEM_rw,carry;
 output reg [1:0]Imm_select;
 output reg[3:0]ALUop;
+wire [6:0] opcode;
 assign opcode=in[6:0];
-always @ in begin
+always @ clk begin
 case (opcode)
 
 	7'b 0110011: begin  //R-type 
@@ -24,21 +25,21 @@ case (opcode)
 	
 	
 	
-	ALUop = { in[30],in[14:12]};
+	ALUop = {in[30],in[14:12]};
 	
    end
 
-	
+	//00000000100000000000011010010011
 	
 	7'b 0010011:begin //I-type
 	
-	pcsrc=0;// using +4
-	Alusrc=1;//  using IMM
-	Imm_select=01;//value used to select the Imm[11:0]
-	REG_rw=1; //right back to reg
-	MEM_rw=0; //still the RAM
-	WB=1; //write back to reg
-	carry=0;//no carry used for this instruction 
+	pcsrc=1'b0;// using +4
+	Alusrc=1'b1;//  using IMM
+	Imm_select=2'b01;//value used to select the Imm[11:0]
+	REG_rw=1'b1; //right back to reg
+	MEM_rw=1'b0; //still the RAM
+	WB=1'b1; //write back to reg
+	carry=1'b0;//no carry used for this instruction 
 	
 	
 	
@@ -77,7 +78,7 @@ case (opcode)
 	carry=1'b0;
 	ALUop=4'b0000;
 	
-	end 
-		endcase
-	end 
+			end 
+	endcase
+end 
 endmodule	
